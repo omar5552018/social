@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <meta charset="utf-8" />
+    <title>Social</title>
+    {% endblock head %}
+    <link rel="shortcut icon" href="https://f.top4top.net/p_1017gn28q1.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--this line to match page size with mobile phones-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#"><b>Social</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/home/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/people/omar/">omar page</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/">AdminPage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'userProfilePage' %}">myProfile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'changePasswordPage' %}">changePassword</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'updateInfoPage' %}">updateInfo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/people/upload/"><b>Upload</b></a>
+            </li>
+          </ul>
+          <div class="navbar-text">
+                <b><a class="nav-link" href="{% url 'logoutPage' %}">Logout</a></b> 
+          </div>
+          {% else %}
+          </div>
+          <div class="navbar-text">
+                <b><a class="nav-link" href="{% url 'loginPage' %}">Login</a></b> 
+          </div>
+          <div class="navbar-text">
+                <b><a class="nav-link" href="{% url 'registerPage' %}">Register</a></b> 
+          </div>
+          {% endif %}
+        </div>
+      </nav>
+      <div class="container">
+      {% block body %}      
+      {% endblock body %}
+      </div>
+</body>
+</html>

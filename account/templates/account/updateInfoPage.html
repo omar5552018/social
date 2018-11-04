@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Udate info</title>
+{% endblock head %}
+{% block body %}
+<h1>Edite profile</h1><br>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-outline-primary" type="submit">Save</button>
+</form>
+{% endblock body %}

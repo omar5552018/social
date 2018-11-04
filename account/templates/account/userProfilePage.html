@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Profile</title>
+{% endblock head %}
+{% block body %}
+<h1>Profile<a href="{% url 'updateInfoPage' %}"><img src="https://svgshare.com/i/96k.svg" style="width:2rem; margin-left:1.5rem;"></a> </h1><br>
+<p>Username : {{ user.username }}</p>
+<p>First name : {{ user.first_name }}</p>
+<p>Last name : {{ user.last_name }}</p>
+<p>City : {{ user.userprofile.city }}</p>
+<p>Description : {{ user.userprofile.description }}</p>
+<p>Phone : {{ user.userprofile.phone }}</p>
+<p>Website : <a href="{{user.userprofile.website}}">{{ user.userprofile.website}}</a></p>
+<img src="{{ user.userprofile.image.url }}" style="width:3.5cm; border-radius: 5px;">
+{% endblock body %}

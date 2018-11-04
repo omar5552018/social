@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block head %}
+<title>Social</title>
+{% endblock head %}
+{% block body %}
+<div>
+    <tr><br><br>
+        <img src="{{ user_page.userprofile.image.url }}" style="border-radius:1300px; height:180px; float:left; margin-right:5cm;">
+        <H1>{{ user_page.username }}</H1>
+        <p>{{ user_page.userprofile.description }}</p>
+        <td>
+            {% comment %} {% for friend in friends %}
+            <p>{{ friend.friends }}</p>
+            {% endfor %} {% endcomment %}
+
+            {% if user.is_authenticated %}
+
+                {% if current_user == user_page %}
+                <a class="btn btn-outline-primary" href="{% url 'post_page' %}"
+                style="float:left;">+ Upload</a>
+                {% else %}            
+
+                    {% if user_page in friends %}
+                        <a class="btn btn-outline-dark" href="{% url 'add_or_remove_friend' operation='remove' pk=user_page.pk %}"
+                        style="float:left;">unFollow</a>
+                    {% else %}
+                        <a class="btn btn-outline-primary" href="{% url 'add_or_remove_friend' operation='add' pk=user_page.pk %}"
+                        style="float:left;">Follow</a>
+                    {% endif %}
+
+                {% endif %}
+
+            {% else %}
+                <a class="btn btn-outline-primary" href="{% url 'loginPage' %}"
+                style="float:left;">Follow</a>
+            {% endif %}
+        </td>        
+    </tr>
+</div>
+<div class="content" style="margin-top:70px;"><br><hr>
+{% for post in posts %}
+<img src="{{ post.image.url }}" style="width:30%; height:auto; margin: 3px 0;">
+{% endfor %}
+</div>
+{% endblock body %}
